@@ -1,5 +1,23 @@
 cmake_minimum_required(VERSION 3.1)
 
+# load paths from the user file if exists
+if (EXISTS ${CMAKE_SOURCE_DIR}/CMakeUserPaths.cmake)
+	include(${CMAKE_SOURCE_DIR}/CMakeUserPaths.cmake)
+	
+	 if(NOT QT_QMAKE_EXECUTABLE)
+		find_program(QT_QMAKE_EXECUTABLE NAMES "qmake" "qmake-qt5" "qmake.exe")
+	 endif()
+	 
+	 message(STATUS "QMake found: ${QT_QMAKE_EXECUTABLE}")
+	 get_filename_component(QT_QMAKE_PATH ${QT_QMAKE_EXECUTABLE} PATH)
+	 
+	set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${QT_QMAKE_PATH}/../lib/cmake/Qt5)
+	
+	message(STATUS "using user paths, new prefix path: ${CMAKE_PREFIX_PATH}")
+elseif(MSVC)
+	message(WARNING "Could not find CMakeUserPaths.cmake - please use this file to specify your install directories (see CMakeUserPathsGit.cmake)")
+endif()
+
 find_package(ECM 5.19.0  NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 include(KDEInstallDirs)

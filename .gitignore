@@ -9,3 +9,4 @@ ui_*.h
 moc_*.cpp
 build/*
 build-qt4/*
+build*
