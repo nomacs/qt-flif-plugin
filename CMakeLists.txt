@@ -20,7 +20,10 @@ endif()
 
 find_package(ECM 5.19.0  NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
-include(KDEInstallDirs)
+
+if (NOT MSVC)
+    include(KDEInstallDirs)
+endif()
 
 find_package(Qt5Gui REQUIRED)
 
