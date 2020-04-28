@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.1)
 
 # load paths from the user file if exists
 if (EXISTS ${CMAKE_SOURCE_DIR}/CMakeUserPaths.cmake)
-	include(${CMAKE_SOURCE_DIR}/CMakeUserPaths.cmake)
+	# include(${CMAKE_SOURCE_DIR}/CMakeUserPaths.cmake)
 	
 	 if(NOT QT_QMAKE_EXECUTABLE)
 		find_program(QT_QMAKE_EXECUTABLE NAMES "qmake" "qmake-qt5" "qmake.exe")
